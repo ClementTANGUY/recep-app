@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Card = ({ details }) => {
+  //On implémente des constantes permettant de splitter les chaînes de caractères obtenues après itération du state principal et de boucler à nouveau sur celles-ci afin de rendre des éléments de listes
   const ingredients = details.ingredients
     .split(',')
     .map(item => <li key={item}>{item}</li>);
@@ -9,6 +10,7 @@ const Card = ({ details }) => {
     .split('\n')
     .map(item => <li key={item}>{item}</li>);
 
+  //On définit le chemin vers les images: on en retourne une par défaut en cas d'erreur d'url
   const requireImage = chemin => {
     try {
       return require(`../img/${chemin}`);

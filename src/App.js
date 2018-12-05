@@ -16,6 +16,7 @@ class App extends Component {
     recettes: {}
   };
 
+  // Cycles de vie de React
   componentDidMount() {
     this.ref = base.syncState(`/${this.state.pseudo}/recettes`, {
       context: this,
@@ -23,10 +24,18 @@ class App extends Component {
     });
   }
 
-  //On s'assure qu'on ne peut écraser des données apartenant à un autre pseudo
+  // On s'assure qu'on ne peut écraser des données apartenant à un autre pseudo
   componentWillUnmount() {
     base.removeBinding(this.ref);
   }
+
+  // Méthodes personalisées
+
+  addRecepe = recepe => {
+    const recettes = { ...this.state.recettes };
+    recettes[`recepe-${Date.now()}`] = recepe;
+    this.setState({ recettes });
+  };
 
   seed = () => this.setState({ recettes });
 
@@ -41,7 +50,7 @@ class App extends Component {
         <div className="cards">
           <div className="card">{cards}</div>
         </div>
-        <Admin Seed={this.seed} />
+        <Admin addRecepe={this.addRecepe} Seed={this.seed} />
       </div>
     );
   }
