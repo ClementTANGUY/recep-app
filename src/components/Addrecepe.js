@@ -59,7 +59,7 @@ class addRecepe extends Component {
             rows="15"
             placeholder="Instructions (allez à la ligne après chacune)"
           />
-          <button type="submit">Ajouter cette nouvelle recette</button>
+          <button type="submit">Ajouter</button>
         </form>
       </div>
     );

@@ -24,16 +24,29 @@ class App extends Component {
     });
   }
 
-  // On s'assure qu'on ne peut écraser des données apartenant à un autre pseudo
   componentWillUnmount() {
+    // On s'assure qu'on ne peut écraser des données apartenant à un autre pseudo
     base.removeBinding(this.ref);
   }
 
-  // Méthodes personalisées
+  // Méthodes ou fonctions personalisées
 
+  // Fonctions de mise à jour du state principal, l'objet {recettes}
   addRecepe = recepe => {
     const recettes = { ...this.state.recettes };
     recettes[`recepe-${Date.now()}`] = recepe;
+    this.setState({ recettes });
+  };
+
+  updateRecepe = (key, newRecepe) => {
+    const recettes = { ...this.state.recettes };
+    recettes[key] = newRecepe;
+    this.setState({ recettes });
+  };
+
+  deleteRecepe = key => {
+    const recettes = { ...this.state.recettes };
+    recettes[key] = null;
     this.setState({ recettes });
   };
 
@@ -50,7 +63,13 @@ class App extends Component {
         <div className="cards">
           <div className="card">{cards}</div>
         </div>
-        <Admin addRecepe={this.addRecepe} Seed={this.seed} />
+        <Admin
+          recettes={this.state.recettes}
+          addRecepe={this.addRecepe}
+          updateRecepe={this.updateRecepe}
+          deleteRecepe={this.deleteRecepe}
+          seed={this.seed}
+        />
       </div>
     );
   }
