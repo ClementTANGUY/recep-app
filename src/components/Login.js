@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Component stateless, on peut définir directement une fonction fléchée sans render et return
+
 const Login = ({ authenticate }) => {
   return (
     <div className="login">

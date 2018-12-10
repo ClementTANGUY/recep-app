@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const NotFound = () => <h2 className='notFound'>Y'a rien ici!</h2>
+// Component stateless, on peut définir directement une fonction fléchée sur une ligne, sans render ni return
 
-export default NotFound
+const NotFound = () => <h2 className="notFound">Y'a rien ici!</h2>;
+
+export default NotFound;

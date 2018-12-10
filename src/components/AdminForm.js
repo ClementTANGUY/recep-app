@@ -1,8 +1,11 @@
 import React from 'react';
 
+// Component stateless, on peut définir directement une fonction fléchée, sans render ni return
+
 const AdminForm = ({ id: key, updateRecepe, deleteRecepe, recettes }) => {
+  // Détermine quelle recette on met à jour grâce à sa clé
   const recepe = recettes[key];
-  // Il faut déterminer quelle recette on met à jour grâce à sa clé
+
   const handleChange = (event, key) => {
     // Trouve le champs nom et la valeur qu'on lui rentre
     const { name, value } = event.target;

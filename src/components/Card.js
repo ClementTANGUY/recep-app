@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Component stateless, on peut définir directement une fonction fléchée
+
 const Card = ({ details }) => {
   //On implémente des constantes permettant de splitter les chaînes de caractères obtenues après itération du state principal et de boucler à nouveau sur celles-ci afin de rendre des éléments de listes
   const ingredients = details.ingredients

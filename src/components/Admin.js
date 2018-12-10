@@ -7,17 +7,16 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import base, { firebaseApp } from '../base';
 
-/*Component dans lequel on ajoute toutes les actions, comme charger le seed à l'aide d'un bouton ou créer, mettre à jour et supprimer une nouvelle recette
-Rappel: dans les components de Class, on importe les props sous la forme this.props, on peut le faire en déstructuré sans this.props en créant des constantes*/
+/*Component Admin dans lequel on ajoute les actions de l'utilisateur connecté, comme charger le seed ou créer, mettre à jour et supprimer une recette*/
 class Admin extends Component {
   state = {
     uid: null,
     cook: null
   };
 
-  /*Permet de ne pas être déconnecté à chaque cycle de vie grâce à la persistence du cache entre les sessions de Firebase
-  On appelle alors handleAuth comme lors du login initial mais immédiatement à chaque changement de state (au chargement du component) afin de voir si un pseudo Firebase est toujours connecté sans s'être déconnecté
-  On passe l'argument sous forme du sous-objet "user" de authData*/
+  /*Permet de ne pas être déconnecté à chaque cycle de vie grâce à la persistence du cache de Firebase
+  On appelle alors la fonction handleAuth comme lors du login initial mais immédiatement à chaque changement de state (au chargement du component) afin de voir si un pseudo Firebase est toujours connecté sans s'être déconnecté
+  On passe alors l'argument sous forme du sous-objet "user" de authData*/
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -26,7 +25,7 @@ class Admin extends Component {
     });
   }
 
-  // La fonction handleAuth permet de récupérer l'id utilisateur du compte Facebook tout en attendant que Firebase fasse son chemin
+  // La fonction handleAuth permet de récupérer l'id utilisateur du compte Facebook tout en attendant que Firebase fasse son travail de sauvegarde des données (await)
   handleAuth = async authData => {
     const box = await base.fetch(this.props.pseudo, { context: this });
     if (!box.cook) {
@@ -41,7 +40,7 @@ class Admin extends Component {
     });
   };
 
-  // Log In grâce à Facebook qui ouvre un pop, se connectant à Firebase
+  // Log In grâce à Facebook qui ouvre un pop up, se connectant à Firebase
   authenticate = () => {
     const authProvider = new firebase.auth.FacebookAuthProvider();
     firebaseApp
@@ -57,6 +56,7 @@ class Admin extends Component {
   };
 
   render() {
+    // Rappel: dans les components de Class, on importe les props sous la forme "this.props.", on peut aussi le faire en déstructuré sans "this.props." en créant des constantes
     const {
       recettes,
       addRecepe,
@@ -68,13 +68,13 @@ class Admin extends Component {
     // Bouton de déconnexion
     const logOut = <button onClick={this.logOut}>Déconnexion</button>;
 
-    // Si l'utilisateur n'est pas connecté
+    // Si l'utilisateur n'est pas connecté, on retourne le component Login
     if (!this.state.uid) {
       return <Login authenticate={this.authenticate} />;
     }
 
     // Si l'utilisateur n'est pas le chef
-    if (this.state.uid != this.state.cook)
+    if (this.state.uid !== this.state.cook)
       return (
         <div>
           <p>Tu n'es pas le chef de cette boîte !</p>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Component stateless, on peut définir directement une fonction fléchée, sans render ni return
 //Grâce à une regex et une condition ternaire, on test notre pseudo afin de savoir si sa première lettre est une voyelle ou et de renvoyer "La boîte à recette d' ou de"
 const Header = ({ pseudo }) => {
   const formatPseudo = pseudo =>

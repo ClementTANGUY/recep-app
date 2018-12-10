@@ -1,5 +1,6 @@
 Educative React app created by Anthony Welc https://www.youtube.com/channel/UChhPkjgG1-iLUOmURGdgQrw
-"Recepes box" allowing to log u to your pseudo thanks to a Facebook authentication and then CRUD recepes
+
+"Recepes Box" allowing to log to your pseudo with a Facebook authentication and then CRUD recepes thanks to a Firebase DB connection
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
