@@ -39,7 +39,7 @@ const withFirebase = WrappedComponent =>
 
     // Méthodes ou fonctions personalisées
 
-    // Fonctions de mise à jour du state principal, l'objet recettes
+    // Fonctions de mise à jour du state principal, l'objet "recettes"
     addRecepe = recepe => {
       const recettes = { ...this.state.recettes };
       recettes[`recepe-${Date.now()}`] = recepe;
